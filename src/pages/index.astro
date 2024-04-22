@@ -1,6 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import BuyList from '../components/BuyList';
+const buyList = [
+	'Controller',
+	'Bread',
+	'Water', 
+	'NoteBook',
+	'Math Book',
+	'Choco Bar',
+	'Milk'
+	]
 ---
 
 <Layout title="Welcome to Astro.">
@@ -33,30 +42,12 @@ import Card from '../components/Card.astro';
 				</linearGradient>
 			</defs>
 		</svg>
-		
+
+		<h1>Lista de Compras</h1>
+		<h2>COMPRAS DE LA SEMANA</h2>
+		<BuyList buyList={buyList} />
 
 		<ul role="list" class="link-card-grid">
-			<Card
-				href=""
-				title="RANDOM"
-				title="Descripcion:"
-				body="Estaba dificil este lab :( "
-			/>
-			<Card
-				href="https://api.minimalavatars.com/avatar/random/png"
-				title="Descripcion:"
-				body="Resolveremos en la clase"
-			/>
-			<Card
-				href="https://api.minimalavatars.com/avatar/random/png"
-				title="Descripcion:"
-				body=":("
-			/>
-			<Card
-				href="https://api.minimalavatars.com/avatar/random/png"
-				title="Descripcion:"
-				body="se me acabaron las ideas"
-			/>
 			
 		</ul>
 	</main>
@@ -103,7 +94,8 @@ import Card from '../components/Card.astro';
 		border-radius: 8px;
 	}
 	.instructions code {
-		
+		font-size: 0.8em;
+		font-weight: bold;
 		background: rgba(var(--accent-light), 12%);
 		color: rgb(var(--accent-light));
 		border-radius: 4px;
@@ -117,9 +109,5 @@ import Card from '../components/Card.astro';
 		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
 		gap: 2rem;
 		padding: 0;
-	}
-	.img{
-		width: 30px;
-		height: 30px;
 	}
 </style>
