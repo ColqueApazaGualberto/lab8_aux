@@ -1,43 +1,65 @@
 ---
 interface Props {
-	title: string;
-	body: string;
-	href: string;
+  title: string;
+  body: string;
+  href: string;
+  
 }
 
 const { href, title, body } = Astro.props;
+
+
+async function getRandomAvatar() {
+  try {
+    const response = await fetch('https://api.minimalavatars.com/avatar/random/png');
+    const data = await response.json();
+    return data.url; 
+  } catch (error) {
+    console.error('Error al obtener el avatar:', error);
+    return ''; 
+  }
+}
+
+
+const randomAvatar = await getRandomAvatar();
 ---
 
 <li class="link-card">
-	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
+  <a href={href}>
+	<h1>RANDOM IMAGE</h1>
+	<img class="img"  src="https://api.minimalavatars.com/avatar/random/png" alt="">
+	<p>________________________</p>
+    <h2>
+      {title}
+    </h2>
+    <p>{body}</p>
+	<br>
+  </a>
 </li>
+
+
 <style>
 	.link-card {
+		width: 350px; /* Ancho de la tarjeta */
+		height: 350px;
 		list-style: none;
 		display: flex;
-		padding: 1px;
-		background-color: #23262d;
 		background-image: none;
-		background-size: 400%;
-		border-radius: 7px;
+		background-size: 100%;
+		border-radius: 20px;
 		background-position: 100%;
 		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 	}
 	.link-card > a {
 		width: 100%;
+		height: 100%; /* Ajustar el tamaño del enlace para llenar la tarjeta */
 		text-decoration: none;
-		line-height: 1.4;
-		padding: calc(1.5rem - 1px);
-		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		border-radius: 20px;
 		color: white;
 		background-color: #23262d;
 		opacity: 0.8;
@@ -57,5 +79,15 @@ const { href, title, body } = Astro.props;
 	}
 	.link-card:is(:hover, :focus-within) h2 {
 		color: rgb(var(--accent-light));
+	}
+
+	.src{
+		width: 30px;
+		height: 30px;
+	}
+
+	.img{
+		width: 100px;
+		height: 100px;
 	}
 </style>
